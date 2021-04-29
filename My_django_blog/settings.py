@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'App_Blog',
     'App_Login',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -125,7 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
 
-#MEDIA_DIRS
+# MEDIA_DIRS
 MEDIA_ROOT = MEDIA_DIRS
 MEDIA_URL = '/media/'
 # Default primary key field type

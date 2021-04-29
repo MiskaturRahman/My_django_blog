@@ -34,13 +34,19 @@
             <li class="nav-item active">
                 <a href="{% url 'index' %}" class="nav-link">Home</a>
             </li>
+            <li>
+                <a href="{% url 'App_Login:signup' %}" class="nav-link">Sign Up</a>
+            </li>
         </ul>
     </nav>
 
-    {% block body_block %}
+    <div class="container" style=" width:50vw">
+
+        {% block body_block %}
 
 
-    {% endblock %}
+        {% endblock %}
+    </div>
 </body>
 
 </html>
