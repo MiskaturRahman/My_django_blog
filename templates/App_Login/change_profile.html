@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+
 {% block title_block %}
-Login
+Change Profile
 {% endblock title_block %}
+
 
 {% block body_block %}
 <div class="container" style="width:60vw">
-    <h2>Login: </h2>
-    <form method="POST">
-        {{form | crispy}}
+    <form method="post">
+        {{ form| crispy}}
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+        <button type="submit" class="btn btn-warning btn-sm">Change</button>
     </form>
 </div>
 {% endblock body_block %}

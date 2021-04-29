@@ -5,20 +5,23 @@
 Create New Account
 {% endblock title_block %}
 
-{% block body_block %}
 
-{% if registered %}
-<div class="alert alert-success">
-    <p>Already Created Successfully! <a href="{% url 'App_Login:login' %}">Login here</a></p>
+
+{% block body_block %}
+<div class="container" style="width:60vw">
+    {% if registered %}
+    <div class="alert alert-success">
+        <p>Already Created Successfully! <a href="{% url 'App_Login:login' %}">Login here</a></p>
+    </div>
+    {% else %}
+    <h2>Create New Account: </h2>
+    <form method="POST">
+        {{ form|crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-sm">Create Account</button>
+    </form>
+    <br>
+    <p>Already have a new account? <a href="{% url 'App_Login:login' %}">Login here</a></p>
+    {% endif %}
 </div>
-{% else %}
-<h2>Create New Account: </h2>
-<form method="POST">
-    {{ form|crispy }}
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success btn-sm">Create Account</button>
-</form>
-<br>
-<p>Already have a new account? <a href="{% url 'App_Login:login' %}">Login here</a></p>
-{% endif %}
 {% endblock body_block %}
