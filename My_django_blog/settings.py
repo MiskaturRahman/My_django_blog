@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIRS = [BASE_DIR / 'templates', ]
 STATIC_DIRS = [BASE_DIR / 'static', ]
-MEDIA_DIRS = [BASE_DIR / 'media', ]
+MEDIA_DIRS = str(BASE_DIR / 'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'App_Blog',
     'App_Login',
     'crispy_forms',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
