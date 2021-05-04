@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+import uuid
 
 # Create your models here.
 
@@ -20,6 +22,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.blog_title
+
+    def save(self):
+        self.slug = slugify(self.blog_title + '-' + str(uuid.uuid4()))
+        super(Blog, self).save()
 
 
 class Comment(models.Model):

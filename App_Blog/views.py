@@ -32,3 +32,10 @@ class BlogList(ListView):
     context_object_name = 'blogs'
     model = Blog
     template_name = 'App_Blog/blog_list.html'
+
+
+@login_required
+def blog_details(request, slug):
+    blog = Blog.objects.get(slug=slug)
+
+    return render(request, 'App_Blog/blog_details.html', context={'blog': blog})
