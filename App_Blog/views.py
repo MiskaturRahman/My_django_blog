@@ -1,14 +1,19 @@
-from App_Blog.forms import CommentForm
-from django.shortcuts import render, HttpResponseRedirect
-from django.views.generic import CreateView, UpdateView, ListView, DetailView, View, TemplateView, DeleteView
-from App_Blog.models import Blog, Comment, Likes
-from django.urls import reverse, reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-# from App_Blog.forms import CommentForm
 import uuid
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import HttpResponseRedirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView, View)
+
+from App_Blog.forms import CommentForm
+from App_Blog.models import Blog, Comment, Likes
+
 # Create your views here.
+
+class MyBlogs(LoginRequiredMixin, TemplateView):
+    template_name = 'App_Blog/my_blogs.html'
 
 
 class MyBlogs(LoginRequiredMixin, TemplateView):
@@ -79,3 +84,11 @@ def unliked(request, pk):
     already_liked.delete()
 
     return HttpResponseRedirect(reverse('App_Blog:blog_details', kwargs={'slug': blog.slug}))
+
+class UpdateBlog(LoginRequiredMixin, UpdateView):
+    model = Blog
+    fields = ('blog_title', 'blog_content', 'blog_image')
+    template_name = 'App_Blog/edit_blog.html'
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('App_Blog:blog_details', kwargs={'slug':self.object.slug})
