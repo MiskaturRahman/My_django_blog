@@ -1,26 +1,17 @@
-{% extends 'base.html' %}
-
-{% block title_block %}
-Profile
-{% endblock title_block %}
-
-{% block body_block %}
+{% extends 'base.html' %} {% block title_block %} Profile {% endblock title_block %} {% block body_block %}
 <h2>Your Profile</h2>
 
 {% if user.user_profile %}
 <img class="rounded-circle img-sm" style="height:10vh" src="/media/{{ user.user_profile.profile_picture}}">
 <br>
-<a href="{% url 'App_Login:change_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Picture</a>
-{% else %}
+<a href="{% url 'App_Login:change_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Picture</a> {% else %}
 <img class="img-circle img-sm" style="height:10vh" src="/media/profile_pics/propic.png">
 
 <a href="{% url 'App_Login:add_pro_pic' %}" class="btn btn-info btn-sm">Change Profile Picture</a>
-<br>
-{% endif %}
+<br> {% endif %}
 
 <p>User Name: {{ user.username }}</p>
 <p>Email: {{user.email }}</p>
 <p>Name: {{user.first_name}} {{user.last_name}}</p>
 <br>
-<a href="{% url 'App_Login:user_change' %}" class="btn btn-warning btn-sm">Change Profile info</a>
-{% endblock body_block %}
+<a href="{% url 'App_Login:user_change' %}" class="btn btn-warning btn-sm">Change Profile info</a> {% endblock body_block %}
